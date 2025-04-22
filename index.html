@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="booking-container">
+        <button class="auth-button">Sign In</button>
         <header>
             <img src="assets/logo.svg" alt="Logo" class="logo">
             <h1>Schedule an Appointment</h1>
@@ -33,7 +34,17 @@
 
     <!-- Application Scripts -->
     <script src="js/calendarLogic.js"></script>
+
+    <script>
+      window.__CONFIG__ = {
+        GOOGLE_API_KEY:    'YOUR_API_KEY',
+        GOOGLE_CLIENT_ID:  'YOUR_OAUTH_CLIENT_ID',
+        TIMEZONE:          'America/Los_Angeles',
+        BOOKING_DURATION:  30
+      };
+    </script>
+
     <script src="js/googleCalendarIntegration.js"></script>
     <script src="js/orchestrator.js"></script>
 </body>
-</html> 
+</html>

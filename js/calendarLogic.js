@@ -61,16 +61,23 @@ class CalendarLogic {
         this.renderCalendar();
     }
 
-    renderTimeSlots(slots) {
+    /**
+     * Render available time slots for a selected date.
+     * @param {string} dateISO — e.g. "2025-04-23"
+     * @param {string[]} slots — array of "HH:MM" strings
+     */
+    renderTimeSlots(dateISO, slots) {
         const container = document.querySelector('.time-slots-container');
+        const d = new Date(dateISO);
+        const opts = { weekday: 'long', month: 'long', day: 'numeric' };
+
         container.innerHTML = `
-            <h3>Available Times</h3>
+            <h3>${d.toLocaleDateString('en-US', opts)}</h3>
             <div class="time-slots">
-                ${slots.map(slot => `
-                    <button class="time-slot" data-time="${slot}">
-                        ${this.formatTime(slot)}
-                    </button>
-                `).join('')}
+                ${slots.map(t => `
+                    <button class="time-slot" data-time="${t}">
+                        ${this.formatTime(t)}
+                    </button>`).join('')}
             </div>
         `;
     }
@@ -102,7 +109,7 @@ class CalendarLogic {
     formatTime(timeString) {
         const [hours, minutes] = timeString.split(':');
         const date = new Date();
-        date.setHours(parseInt(hours), parseInt(minutes));
+        date.setHours(parseInt(hours, 10), parseInt(minutes, 10));
         return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
     }
-} 
+}
