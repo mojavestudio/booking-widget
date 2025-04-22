@@ -9,8 +9,8 @@ class GoogleCalendarIntegration {
         try {
             await gapi.load('client:auth2', () => {
                 gapi.client.init({
-                    apiKey: process.env.GOOGLE_API_KEY,
-                    clientId: process.env.GOOGLE_CLIENT_ID,
+                    apiKey: window.__CONFIG__.GOOGLE_API_KEY,
+                    clientId: window.__CONFIG__.GOOGLE_CLIENT_ID,
                     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
                     scope: 'https://www.googleapis.com/auth/calendar.events'
                 }).then(() => {
@@ -82,11 +82,11 @@ class GoogleCalendarIntegration {
                 description: `Contact: ${bookingData.get('email')}\nPhone: ${bookingData.get('phone')}\nNotes: ${bookingData.get('notes')}`,
                 start: {
                     dateTime: `${bookingData.get('date')}T${bookingData.get('time')}:00`,
-                    timeZone: process.env.TIMEZONE
+                    timeZone: window.__CONFIG__.TIMEZONE
                 },
                 end: {
-                    dateTime: `${bookingData.get('date')}T${this.addMinutes(bookingData.get('time'), process.env.BOOKING_DURATION)}:00`,
-                    timeZone: process.env.TIMEZONE
+                    dateTime: `${bookingData.get('date')}T${this.addMinutes(bookingData.get('time'), window.__CONFIG__.BOOKING_DURATION)}:00`,
+                    timeZone: window.__CONFIG__.TIMEZONE
                 }
             };
 
@@ -105,7 +105,7 @@ class GoogleCalendarIntegration {
         const slots = [];
         const startTime = new Date(date + 'T09:00:00');
         const endTime = new Date(date + 'T17:00:00');
-        const interval = process.env.BOOKING_DURATION * 60 * 1000;
+        const interval = window.__CONFIG__.BOOKING_DURATION * 60 * 1000;
 
         for (let time = startTime; time < endTime; time = new Date(time.getTime() + interval)) {
             const isAvailable = !this.isTimeSlotBusy(time, busySlots);
