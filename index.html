@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Interface</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Calendar API -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="booking-container">
+        <header>
+            <img src="assets/logo.svg" alt="Logo" class="logo">
+            <h1>Schedule an Appointment</h1>
+        </header>
+        
+        <main>
+            <div class="calendar-container">
+                <!-- Calendar will be rendered here -->
+            </div>
+            
+            <div class="time-slots-container">
+                <!-- Available time slots will be rendered here -->
+            </div>
+            
+            <div class="booking-form">
+                <!-- Booking form will be rendered here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="js/calendarLogic.js"></script>
+    <script src="js/googleCalendarIntegration.js"></script>
+    <script src="js/orchestrator.js"></script>
+</body>
+</html> 
